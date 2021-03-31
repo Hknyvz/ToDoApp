@@ -1,0 +1,24 @@
+.appName{
+    width: 166px;
+    height: 48px;
+    font-weight: bold;
+    font-size: larger;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+.navbar{
+    border-bottom: 1px solid #f0f0f0;
+}
+.navMenu{
+    border: none;
+}
+.diveder{
+    margin:0px !important;
+}

@@ -1,6 +1,5 @@
 import { Calendar, Badge } from 'antd';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import 'moment/locale/tr';
 import locale from 'antd/es/date-picker/locale/tr_TR';

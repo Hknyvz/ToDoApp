@@ -5,12 +5,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import CalendarPage from './Components/Calendar/CleandarPage';
 import SignUp from './Components/SignUp/SignUp';
 import SignIn from './Components/SignIn/SignIn';
+import Navbar from './Components/Shared/Navbar';
 
 function App() {
   return (
     <>
-      
       <Router>
+      <Navbar></Navbar>
         <Switch>
           <Route path="/" exact>
             <TodoList></TodoList>
