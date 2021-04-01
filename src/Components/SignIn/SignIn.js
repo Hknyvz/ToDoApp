@@ -18,6 +18,7 @@ const tailLayout = {
 function SignIn() {
     
     const onFinish = (values) => {
+        //Authentication işlemleri burada gerçekleşecek.
         console.log('Success:', values);
     };
 
