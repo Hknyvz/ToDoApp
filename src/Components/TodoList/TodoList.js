@@ -5,13 +5,14 @@ import ListItem from './SubComponents/ListItem';
 import { PlusOutlined } from '@ant-design/icons';
 import ModalArea from './SubComponents/ModalArea';
 import shortDate from "../../Helper/shortDate";
+import { useTranslation } from "react-i18next";
 
 const data1 = [
     {
         title: 'Ant Design Title 1',
         id: 1,
         description:"description-1",
-        date:"2021-04-01"
+        date:"2021-05-01"
     },
     {
         title: 'Ant Design Title 2',
@@ -75,6 +76,7 @@ function TodoList(props) {
         console.log('Clicked cancel button');
         setVisible(false);
     };
+    const { t } = useTranslation();
 
 
     return (
@@ -97,11 +99,13 @@ function TodoList(props) {
                 />
             </Container>
             <Modal
-                title="Title"
+                title={t("Todo_Add")}
                 visible={visible}
                 onOk={handleOk}
                 confirmLoading={confirmLoading}
                 onCancel={handleCancel}
+                okText={t("Save")}
+                cancelText={t("Cancel")}
             >
             <ModalArea
                 titleChange={(value)=>setTitle(value)}

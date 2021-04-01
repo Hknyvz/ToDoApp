@@ -1,0 +1,19 @@
+{
+    "To_Do":"To Do List",
+    "Language":"EN",
+    "Menu":"Menu",
+    "Calendar":"Calendar",
+    "Sign_In":"Sign In",
+    "Sign_Up":"Sign Up",
+    "Edit":"Edit",
+    "User_Name":"Username",
+    "Password":"Password",
+    "Remember_Me":"Remember Me",
+    "Todo_Add":"Add A Task To Do ",
+    "Title":"Title",
+    "Description":"Description",
+    "Date":"Date",
+    "Save":"Save",
+    "Cancel":"Cancel"
+
+}

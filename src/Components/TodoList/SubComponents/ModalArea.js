@@ -5,12 +5,16 @@ import 'moment/locale/tr';
 import locale from 'antd/es/date-picker/locale/tr_TR';
 import splitDate from "../../../Helper/splitDate"
 import shortDate from '../../../Helper/shortDate';
+import { useTranslation } from "react-i18next";
+
 function ModalArea(props) {
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [date, setDate] = useState("");
     const [momentDate, setMomentDate] = useState()
+    const { t } = useTranslation();
+    
     useEffect(() => {
         setDate(props.date);
         setDescription(props.description);
@@ -28,11 +32,11 @@ function ModalArea(props) {
 
     return (
         <>
-            <div>Title</div>
+            <div>{t("Title")}</div>
             <Input onChange={(value) => props.titleChange(value.target.value)} value={title} />
-            <div>Description</div>
+            <div>{t("Description")}</div>
             <TextArea onChange={(value) => props.descriptionChange(value.target.value)} value={description} />
-            <div>Date</div>
+            <div>{t("Date")}</div>
             <DatePicker onChange={(value)=>handleDate(value)} locale={locale}  value={momentDate}/>
         </>
     )

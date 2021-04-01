@@ -1,6 +1,8 @@
 import React from 'react'
 import Container from '../Shared/Container'
 import { Form, Input, Button, Checkbox } from 'antd';
+import { useTranslation } from "react-i18next";
+
 const layout = {
     labelCol: {
         span: 8,
@@ -25,7 +27,7 @@ function SignIn() {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
-
+    const { t } = useTranslation();
     return (
         <>
             <Container>
@@ -39,7 +41,7 @@ function SignIn() {
                     onFinishFailed={onFinishFailed}
                 >
                     <Form.Item
-                        label="Username"
+                        label={t("User_Name")}
                         name="username"
                         rules={[
                             {
@@ -52,7 +54,7 @@ function SignIn() {
                     </Form.Item>
 
                     <Form.Item
-                        label="Password"
+                        label={t("Password")}
                         name="password"
                         rules={[
                             {
@@ -65,12 +67,12 @@ function SignIn() {
                     </Form.Item>
 
                     <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-                        <Checkbox>Remember me</Checkbox>
+                        <Checkbox>{t("Remember_Me")}</Checkbox>
                     </Form.Item>
 
                     <Form.Item {...tailLayout}>
                         <Button type="primary" htmlType="submit">
-                            Submit
+                            {t("Sign_In")}
                     </Button>
                     </Form.Item>
                 </Form>
