@@ -17,7 +17,7 @@ function ModalArea(props) {
     const [momentDate, setMomentDate] = useState()
     const { t, i18n } = useTranslation();
     const [datePickerLocale, setdatePickerLocale] = useState()
-
+    const [dateFormat, setDateFormat] = useState("yyyy-MM-DD")
 
     useEffect(() => {
         setDate(props.date);
@@ -29,12 +29,14 @@ function ModalArea(props) {
         switch (i18n.language) {
             case "tr":
                 setdatePickerLocale(localetr);
+                setDateFormat("DD-MM-yyyy")
                 break;
             case "en":
                 setdatePickerLocale(localeen);
+                setDateFormat("yyyy-MM-DD")
                 break;
         }
-    }, [i18n])
+    })
     
     useEffect(() => {
         setMomentDate(splitDate(date));
@@ -53,7 +55,7 @@ function ModalArea(props) {
             <div>{t("Description")}</div>
             <TextArea onChange={(value) => props.descriptionChange(value.target.value)} value={description} />
             <div>{t("Date")}</div>
-            <DatePicker onChange={(value) => handleDate(value)} locale={datePickerLocale} value={momentDate} />
+            <DatePicker onChange={(value) => handleDate(value)} format={dateFormat} locale={datePickerLocale} value={momentDate} />
         </>
     )
 }
