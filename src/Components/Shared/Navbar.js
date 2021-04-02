@@ -15,7 +15,8 @@ function Navbar() {
 
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
-        window.location.reload();
+        
+        window.location.pathname=="/calendar"&&window.location.reload();
     };
     useEffect(() => {
         const accuountData = {

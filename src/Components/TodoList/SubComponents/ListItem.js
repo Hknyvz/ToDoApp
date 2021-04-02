@@ -1,11 +1,10 @@
 import { List } from 'antd';
 import { useTranslation } from "react-i18next";
-import React, { useEffect, useState } from 'react'
-import {updateTodoChecked} from "../../../SqlMethods/update"
-
+import React from 'react';
+import {dateTr} from "../../../Helper/date";
 function ListItem(props) {
     
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     return (
         <>
@@ -23,7 +22,7 @@ function ListItem(props) {
                     title={props.title}
                     description={props.description}
                 />
-                {props.date}
+                {i18n.language==="tr"?dateTr(props.date):props.date}
             </List.Item>
         </>
     )
