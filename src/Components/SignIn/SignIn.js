@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import Container from '../Shared/Container'
 import { Form, Input, Button, Checkbox } from 'antd';
 import { useTranslation } from "react-i18next";
-import { getAllUsers } from "../../SqlMethods/getAll"
+import { getAllUsers } from "../../SqlMethods/get"
 import accountContext from "../Contexts/AccountContext";
 import {Link, Redirect} from "react-router-dom";
 const layout = {
@@ -29,7 +29,6 @@ function SignIn() {
     }, [])
     const onFinish = (values) => {
         let user = users.filter(p => p.email == values.email);
-        console.log(user);
 
         if (user[0].id) {
             setAccount({id:user[0].id,userName:user[0].userName,email:user[0].email});
@@ -46,7 +45,6 @@ function SignIn() {
         console.log('Failed:', errorInfo);
     };
 
-    console.log(account);
     return (
         <>
             <Container>

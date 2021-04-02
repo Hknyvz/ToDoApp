@@ -6,17 +6,15 @@ import { PlusOutlined } from '@ant-design/icons';
 import ModalArea from './SubComponents/ModalArea';
 import shortDate from "../../Helper/shortDate";
 import { useTranslation } from "react-i18next";
-import { getAllTodos } from "../../SqlMethods/getAll"
+import { getAllTodos } from "../../SqlMethods/get"
 import { addToDo } from '../../SqlMethods/add';
 import accountContext from "../Contexts/AccountContext";
-import {updateTodoChecked} from "../../SqlMethods/update";
+import { updateTodoChecked } from "../../SqlMethods/update";
 import { Redirect } from 'react-router-dom';
-import {updateTodoContent} from "../../SqlMethods/update"
+import { updateTodoContent } from "../../SqlMethods/update"
 
 function TodoList() {
-    const [size, setSize] = useState({
-        size: 'large',
-    });
+
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [datas, setDatas] = useState([]);
     const [visible, setVisible] = useState(false);
@@ -30,7 +28,6 @@ function TodoList() {
     useEffect(() => {
         setDatas(getAllTodos(account.id))
     }, [])
-
     const showModal = (value) => {
         setVisible(true);
         if (value.target.id) {
@@ -53,21 +50,21 @@ function TodoList() {
         setConfirmLoading(true);
         setVisible(false);
         setConfirmLoading(false);
-        
-        
-        if (todoId!=0) {
+
+
+        if (todoId !== 0) {
             const todoData = {
                 userId: account.id,
                 title: title,
                 description: description,
                 date: date,
-                id:todoId
+                id: todoId
             }
             updateTodoContent(todoData)
-            .then(setDatas(getAllTodos(account.id)))
-            .catch((err)=>console.log(err));
+                .then(setDatas(getAllTodos(account.id)))
+                .catch((err) => console.log(err));
             setTodoId(0);
-        }else{
+        } else {
 
             const todoData = {
                 userId: account.id,
@@ -77,33 +74,31 @@ function TodoList() {
                 date: date
             }
             addToDo(todoData)
-            .then(setDatas(getAllTodos(account.id)))
-            .catch((err)=>console.log(err));
+                .then(setDatas(getAllTodos(account.id)))
+                .catch((err) => console.log(err));
         }
     };
 
     const handleCancel = () => {
-        console.log('Clicked cancel button');
         setVisible(false);
+        setTodoId(0);
     };
 
     const handleChecked = (event) => {
-        console.log(event.target.id);
-        console.log(event.target.checked);
-        const value={
-            id:event.target.id,
-            isDone:event.target.checked
+        const value = {
+            id: event.target.id,
+            isDone: event.target.checked
         }
         updateTodoChecked(value)
-        .then(setDatas(getAllTodos(account.id)))
-        .catch((err)=>console.log(err));
+            .then(setDatas(getAllTodos(account.id)))
+            .catch((err) => console.log(err));
     }
 
     return (
         <>
-            {account.id===""&&<Redirect to="/signin"/>}
+            {account.id === "" && <Redirect to="/signin" />}
             <Container>
-                <Button type="primary" onClick={showModal} icon={<PlusOutlined />} size={size} />
+                <Button type="primary" onClick={showModal} icon={<PlusOutlined />} />
                 <List
                     itemLayout="horizontal"
                     dataSource={datas}
@@ -115,7 +110,7 @@ function TodoList() {
                             id={item.id}
                             onClick={(value) => showModal(value)}
                             isDone={item.isDone}
-                            isChecked={(value)=>handleChecked(value)}
+                            isChecked={(value) => handleChecked(value)}
                         />
                     )}
                 />

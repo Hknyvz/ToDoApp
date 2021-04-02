@@ -1,4 +1,4 @@
-import { Col, Divider, Menu, Row } from 'antd';
+import { Divider, Menu, Row } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { GlobalOutlined } from '@ant-design/icons';
 import React, { useContext, useState, useEffect } from "react"
@@ -15,6 +15,7 @@ function Navbar() {
 
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
+        
     };
     useEffect(() => {
         const accuountData = {

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import Container from '../Shared/Container'
 import { Form, Input, Button } from 'antd';
 import { useTranslation } from "react-i18next";
-import * as alasql from 'alasql';
-import { getAllUsers } from "../../SqlMethods/getAll"
+import { getAllUsers } from "../../SqlMethods/get"
 import { addUser } from "../../SqlMethods/add"
-
+import {Link, Redirect} from "react-router-dom";
+import "../Shared/shared.css"
 const layout = {
     labelCol: {
         span: 8,
@@ -22,8 +22,9 @@ const tailLayout = {
 };
 function SignUp() {
     const [users, setUsers] = useState([]);
-    const { t } = useTranslation();
-    
+    const [isRegisterOk, setIsRegisterOk] = useState()
+    const { t } = useTranslation(false);
+
     useEffect(() => {
         setUsers(getAllUsers());
     }, [])
@@ -32,14 +33,17 @@ function SignUp() {
         let user = users.filter(p => p.email == values.email);
         if (user.length === 0) {
             addUser(values)
-            .then(setUsers(getAllUsers()))
-            .catch((err)=>console.log(err));
+                .then(()=>{
+                    setUsers(getAllUsers())
+                    setIsRegisterOk(true);
+                })
+                .catch((err) => console.log(err));
         }
-        else{
+        else {
             alert(t("Register_Validation_Text"));
         }
     };
-    
+
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
@@ -62,7 +66,7 @@ function SignUp() {
                         name="userName"
                         rules={[
                             {
-                                required:true,
+                                required: true,
                                 message: t("Username_Validation_Text"),
                             },
                         ]}
@@ -100,6 +104,8 @@ function SignUp() {
                         <Button type="primary" htmlType="submit">
                             {t("Sign_Up")}
                         </Button>
+                        {isRegisterOk&&<Redirect to="/signin"/>}
+                        <Link className="link" to="/signin">{t("Sign_In")}</Link>
                     </Form.Item>
                 </Form>
             </Container>
