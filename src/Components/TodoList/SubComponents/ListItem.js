@@ -1,33 +1,29 @@
 import { List } from 'antd';
 import { useTranslation } from "react-i18next";
 import React, { useEffect, useState } from 'react'
+import {updateTodoChecked} from "../../../SqlMethods/update"
 
 function ListItem(props) {
-
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [date, setDate] = useState("");
+    
     const { t } = useTranslation();
 
-    
-
-    const handleChecked = (event) => {
-        console.log(event.target.id);
-        console.log(event.target.checked);
-    }
     return (
         <>
             <List.Item
-                actions={[<a id={props.id}  onClick={(e) => props.onClick(e)}>{t("Edit")}</a>, <input id={props.id} onChange={(event) => handleChecked(event)} type="checkbox" key="ok"></input>]}
-                extra={props.date}
+                actions={[
+                <a id={props.id}  onClick={(e) => props.onClick(e)}>{t("Edit")}</a>, 
+                <input 
+                    id={props.id} 
+                    onChange={(value) => props.isChecked(value)}                         
+                    checked={props.isDone} 
+                    type="checkbox" 
+                    key="ok"/>]}
             >
                 <List.Item.Meta
-
                     title={props.title}
                     description={props.description}
-
                 />
-
+                {props.date}
             </List.Item>
         </>
     )

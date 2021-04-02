@@ -26,8 +26,8 @@ function ModalArea(props) {
 
     const handleDate=(value)=>{
         value!==null?
-        setMomentDate(splitDate(shortDate(value._d))):
-        setMomentDate(splitDate(shortDate(new Date())));
+        props.dateChange(shortDate(value._d))
+        :props.dateChange(shortDate(new Date()));
     }
 
     return (

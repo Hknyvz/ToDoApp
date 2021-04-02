@@ -92,6 +92,7 @@ function SignIn() {
                     <Form.Item {...tailLayout}>
                         
                             <Button type="primary" htmlType="submit">{t("Sign_In")}</Button>
+                            <Button type="link"><Link to="/signup">{t("Sign_Up")}</Link></Button>
                             {account.id!==""&&<Redirect to="/"/>}
                     </Form.Item>
                 </Form>

@@ -4,7 +4,7 @@ export function getAllUsers()
 {
     return alasql('SELECT * FROM User');
 }
-export function getAllTodos() 
+export function getAllTodos(userId) 
 {
-    return alasql('SELECT * FROM ToDo');
+    return userId&&alasql(`SELECT * FROM ToDo WHERE userId=${userId}`);
 }

@@ -30,10 +30,10 @@ function SignUp() {
 
     const onFinish = (values) => {
         let user = users.filter(p => p.email == values.email);
-        console.log(values);
         if (user.length === 0) {
             addUser(values)
-            setUsers(getAllUsers());
+            .then(setUsers(getAllUsers()))
+            .catch((err)=>console.log(err));
         }
         else{
             alert(t("Register_Validation_Text"));
@@ -62,7 +62,7 @@ function SignUp() {
                         name="userName"
                         rules={[
                             {
-                                required: true,
+                                required:true,
                                 message: t("Username_Validation_Text"),
                             },
                         ]}
