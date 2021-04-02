@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Container from '../Shared/Container'
 import { Form, Input, Button, Checkbox } from 'antd';
 import { useTranslation } from "react-i18next";
-
+import { getAllUsers } from "../../SqlMethods/getAll"
+import accountContext from "../Contexts/AccountContext";
+import {Link, Redirect} from "react-router-dom";
 const layout = {
     labelCol: {
         span: 8,
@@ -18,16 +20,33 @@ const tailLayout = {
     },
 };
 function SignIn() {
-    
+    const [users, setUsers] = useState([]);
+    const { account, setAccount } = useContext(accountContext);
+    const { t } = useTranslation();
+
+    useEffect(() => {
+        setUsers(getAllUsers());
+    }, [])
     const onFinish = (values) => {
-        //Authentication işlemleri burada gerçekleşecek.
-        console.log('Success:', values);
+        let user = users.filter(p => p.email == values.email);
+        console.log(user);
+
+        if (user[0].id) {
+            setAccount({id:user[0].id,userName:user[0].userName,email:user[0].email});
+            if (values.isRemember) {
+                document.cookie = `id=${user[0].id}`;
+                document.cookie = `email=${user[0].email}`;
+                document.cookie = `userName=${user[0].userName}`;
+            }
+            
+        }
     };
 
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
-    const { t } = useTranslation();
+
+    console.log(account);
     return (
         <>
             <Container>
@@ -41,12 +60,12 @@ function SignIn() {
                     onFinishFailed={onFinishFailed}
                 >
                     <Form.Item
-                        label={t("User_Name")}
-                        name="username"
+                        label={t("Email")}
+                        name="email"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your username!',
+                                message: t("Email_Validation_Text"),
                             },
                         ]}
                     >
@@ -59,21 +78,21 @@ function SignIn() {
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your password!',
+                                message: t("Password_Validation_Text"),
                             },
                         ]}
                     >
                         <Input.Password />
                     </Form.Item>
 
-                    <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+                    <Form.Item {...tailLayout} name="isRemember" valuePropName="checked">
                         <Checkbox>{t("Remember_Me")}</Checkbox>
                     </Form.Item>
 
                     <Form.Item {...tailLayout}>
-                        <Button type="primary" htmlType="submit">
-                            {t("Sign_In")}
-                    </Button>
+                        
+                            <Button type="primary" htmlType="submit">{t("Sign_In")}</Button>
+                            {account.id!==""&&<Redirect to="/"/>}
                     </Form.Item>
                 </Form>
             </Container>

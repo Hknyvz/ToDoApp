@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Container from '../Shared/Container'
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { useTranslation } from "react-i18next";
+import * as alasql from 'alasql';
+import { getAllUsers } from "../../SqlMethods/getAll"
+import { addUser } from "../../SqlMethods/add"
 
 const layout = {
     labelCol: {
@@ -18,16 +21,29 @@ const tailLayout = {
     },
 };
 function SignUp() {
+    const [users, setUsers] = useState([]);
+    const { t } = useTranslation();
     
-    const onFinish = (values) => {
-        console.log('Success:', values);
-    };
+    useEffect(() => {
+        setUsers(getAllUsers());
+    }, [])
 
+    const onFinish = (values) => {
+        let user = users.filter(p => p.email == values.email);
+        console.log(values);
+        if (user.length === 0) {
+            addUser(values)
+            setUsers(getAllUsers());
+        }
+        else{
+            alert(t("Register_Validation_Text"));
+        }
+    };
+    
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
 
-    const { t} = useTranslation();
 
     return (
         <>
@@ -43,11 +59,11 @@ function SignUp() {
                 >
                     <Form.Item
                         label={t("User_Name")}
-                        name="username"
+                        name="userName"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your username!',
+                                message: t("Username_Validation_Text"),
                             },
                         ]}
                     >
@@ -60,11 +76,11 @@ function SignUp() {
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your email!',
+                                message: t("Email_Validation_Text"),
                             },
                         ]}
                     >
-                        <Input type="email"/>
+                        <Input type="email" />
                     </Form.Item>
 
                     <Form.Item
@@ -73,7 +89,7 @@ function SignUp() {
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your password!',
+                                message: t("Password_Validation_Text"),
                             },
                         ]}
                     >
@@ -82,8 +98,8 @@ function SignUp() {
 
                     <Form.Item {...tailLayout}>
                         <Button type="primary" htmlType="submit">
-                        {t("Sign_Up")}
-                    </Button>
+                            {t("Sign_Up")}
+                        </Button>
                     </Form.Item>
                 </Form>
             </Container>

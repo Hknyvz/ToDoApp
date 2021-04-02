@@ -5,6 +5,7 @@
     "Calendar":"Calendar",
     "Sign_In":"Sign In",
     "Sign_Up":"Sign Up",
+    "Sign_Out":"Sign Out",
     "Edit":"Edit",
     "User_Name":"Username",
     "Password":"Password",
@@ -14,6 +15,10 @@
     "Description":"Description",
     "Date":"Date",
     "Save":"Save",
-    "Cancel":"Cancel"
+    "Cancel":"Cancel",
+    "Email_Validation_Text":"Please input your email!",
+    "Password_Validation_Text":"Please input your password!",
+    "Username_Validation_Text":"Please input your username!",
+    "Register_Validation_Text":"There is a registered user in this e-mail."
 
 }

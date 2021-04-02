@@ -5,6 +5,7 @@
     "Calendar":"Takvim",
     "Sign_In":"Giriş Yap",
     "Sign_Up":"Kayıt Ol",
+    "Sign_Out":"Çıkış Yap",
     "Edit":"Düzenle",
     "User_Name":"Kullanıcı Adı",
     "Password":"Şifre",
@@ -14,5 +15,9 @@
     "Description":"Açıklama",
     "Date":"Takvim",
     "Save":"Kaydet",
-    "Cancel":"Çık"
+    "Cancel":"Çık",
+    "Email_Validation_Text":"Lütfen email adresi giriniz!",
+    "Password_Validation_Text":"Lütfen şifre giriniz!",
+    "Username_Validation_Text":"Lütfen kullanıcı adı giriniz!",
+    "Register_Validation_Text":"Bu email'e kayıtlı bir kullanıcı bulunmaktadır."
 }
