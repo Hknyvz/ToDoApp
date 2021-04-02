@@ -1,0 +1,10 @@
+.listRow{
+    list-style-type: none ;
+    display: flex;
+    justify-items: start;
+    flex-direction: row;
+    justify-content: start;
+}
+.listRowContainer{
+    padding: 0;
+}

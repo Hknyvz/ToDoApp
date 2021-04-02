@@ -20,5 +20,6 @@
     "Email_Validation_Text":"Lütfen email adresi giriniz!",
     "Password_Validation_Text":"Lütfen şifre giriniz!",
     "Username_Validation_Text":"Lütfen kullanıcı adı giriniz!",
-    "Register_Validation_Text":"Bu email'e kayıtlı bir kullanıcı bulunmaktadır."
+    "Register_Validation_Text":"Bu email'e kayıtlı bir kullanıcı bulunmaktadır.",
+    "No_Data":"Veri yok"
 }

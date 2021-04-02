@@ -2,7 +2,7 @@ import './App.css';
 import React, { useEffect, useContext } from "react"
 import TodoList from './Components/TodoList/TodoList';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
-import CalendarPage from './Components/Calendar/CleandarPage';
+import CalendarPage from './Components/Calendar/CalendarPage';
 import SignUp from './Components/SignUp/SignUp';
 import SignIn from './Components/SignIn/SignIn';
 import Navbar from './Components/Shared/Navbar';

@@ -20,6 +20,7 @@
     "Email_Validation_Text":"Please input your email!",
     "Password_Validation_Text":"Please input your password!",
     "Username_Validation_Text":"Please input your username!",
-    "Register_Validation_Text":"There is a registered user in this e-mail."
+    "Register_Validation_Text":"There is a registered user in this e-mail.",
+    "No_Data":"No Data"
 
 }

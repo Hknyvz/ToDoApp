@@ -22,7 +22,7 @@ function TodoList() {
     const [description, setDescription] = useState()
     const [date, setDate] = useState(Date)
     const [modalTitle, setModalTitle] = useState()
-    const { t } = useTranslation();
+    const { t,i18n } = useTranslation();
     const { account, setAccount } = useContext(accountContext)
     const [todoId, setTodoId] = useState(0);
     useEffect(() => {

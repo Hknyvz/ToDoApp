@@ -15,7 +15,7 @@ function Navbar() {
 
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
-        
+        window.location.reload();
     };
     useEffect(() => {
         const accuountData = {

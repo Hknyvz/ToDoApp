@@ -23,6 +23,9 @@ function ModalArea(props) {
         setDate(props.date);
         setDescription(props.description);
         setTitle(props.title);
+    })
+
+    useEffect(() => {
         switch (i18n.language) {
             case "tr":
                 setdatePickerLocale(localetr);
@@ -31,8 +34,8 @@ function ModalArea(props) {
                 setdatePickerLocale(localeen);
                 break;
         }
-    })
-
+    }, [i18n])
+    
     useEffect(() => {
         setMomentDate(splitDate(date));
     }, [date])
